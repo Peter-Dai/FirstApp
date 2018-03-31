@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReactInput, ReactForm, Utils } from '../ReactValidation/ReactValidationComponent'
+import { ReactInput, ReactForm,ReactSelect, Utils } from '../ReactValidation/ReactValidationComponent'
 
 class AddGoods extends Component {
     constructor(...props) {
@@ -7,7 +7,20 @@ class AddGoods extends Component {
         this.state = {
             name: "peter",
             price: "$1",
-            category: "test2"
+            category: "test2",
+            selectConfig:{
+                options:[
+                    {text:"text1",value:"t1"},
+                    {text:"text2",value:"t2"},
+                    {text:"text3",value:"t3"},
+                    {text:"text4",value:"t4"},
+                    {text:"text5",value:"t5"},
+                    {text:"text6",value:"t6"},
+                    {text:"text7",value:"t7"},
+                    {text:"text8",value:"t8"},
+                ],
+                defaultOption:{text:"Select",value:""}
+            }
         }
 
         // Config validation
@@ -39,7 +52,21 @@ class AddGoods extends Component {
                     }
                 ],
                 trigger: "blur"
-            }
+            },
+            // tian: {
+            //     rules: [
+            //         {
+            //             name: Utils.validationType.required,
+            //             msg: "this is tian required"
+            //         },
+            //         {
+            //             name: Utils.validationType.maxLength,
+            //             rule: 3,
+            //             msg: "this is tian shit"
+            //         }
+            //     ],
+            //     trigger: "blur"
+            // }
         }
     }
 
@@ -79,6 +106,10 @@ class AddGoods extends Component {
                 <ReactForm formConfig={this.validationConfig}>
                     <ReactInput name="peter" ></ReactInput>
                     <ReactInput name="bonnie" ></ReactInput>
+                    <ReactSelect name="tian" selectConfig={this.state.selectConfig}></ReactSelect>
+                    
+
+                    
                     <div>peter</div>
                     <input type="text" />
                     <button type="submit" >Submit</button>

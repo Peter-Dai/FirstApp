@@ -14,7 +14,7 @@ class ReactForm extends Component {
             if (typeof child.type === 'function') {
                 this.state[child.props.name] = {
                     value: '',
-                    valid: false
+                    valid: !!this.props.formConfig[child.props.name] ? false : true
                 }
             }
         })
@@ -24,23 +24,23 @@ class ReactForm extends Component {
     }
 
     // callback method for child component updates state of form.
-    setFormStateValue(name, value, vaild) {
+    setFormStateValue(name, value, valid) {
         let newOne = {};
         newOne[name] = {
             value,
-            vaild
+            valid
         };
         this.setState(newOne)
     }
 
     handleSubmit(e) {
         e.preventDefault();
-        let invaildItems = _.map(this.state, (value, key, items) => {
+        let invalidItems = _.map(this.state, (value, key, items) => {
             return Object.assign({}, value, { id: key })
-        }).filter(i => !i.vaild);
+        }).filter(i => !i.valid);
 
-        if (!!invaildItems && invaildItems.length > 0) {
-            invaildItems.forEach((i) => {
+        if (!!invalidItems && invalidItems.length > 0) {
+            invalidItems.forEach((i) => {
                 let targetDom = e.target.querySelector("[name='" + i.id + "']");
 
                 Utils.validationHelper.validateRule(this.props.formConfig[i.id], targetDom);
