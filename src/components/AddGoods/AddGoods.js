@@ -53,27 +53,34 @@ class AddGoods extends Component {
                 ],
                 trigger: "blur"
             },
-            // tian: {
-            //     rules: [
-            //         {
-            //             name: Utils.validationType.required,
-            //             msg: "this is tian required"
-            //         },
-            //         {
-            //             name: Utils.validationType.maxLength,
-            //             rule: 3,
-            //             msg: "this is tian shit"
-            //         }
-            //     ],
-            //     trigger: "blur"
-            // }
+            tian: {
+                rules: [
+                    {
+                        name: Utils.validationType.required,
+                        msg: "this is tian required"
+                    },
+                    {
+                        name: Utils.validationType.maxLength,
+                        rule: 3,
+                        msg: "this is tian shit"
+                    }
+                ],
+                trigger: "blur"
+            }
         }
+
+        this.bonnieChange = this.bonnieChange.bind(this)
     }
 
     handleChange(e, name) {
         let newOne = {};
         newOne[name] = e.target.value;
         this.setState(newOne)
+    }
+
+    bonnieChange(e){
+        console.log(e);
+        alert("this is boonie call")
     }
 
     emitAdd() {
@@ -105,10 +112,8 @@ class AddGoods extends Component {
                 <button onClick={() => this.emitAdd.call(this)}>Add</button>
                 <ReactForm formConfig={this.validationConfig}>
                     <ReactInput name="peter" ></ReactInput>
-                    <ReactInput name="bonnie" ></ReactInput>
+                    <ReactInput name="bonnie" onChange={this.bonnieChange}></ReactInput>
                     <ReactSelect name="tian" selectConfig={this.state.selectConfig}></ReactSelect>
-                    
-
                     
                     <div>peter</div>
                     <input type="text" />

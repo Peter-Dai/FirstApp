@@ -21,6 +21,7 @@ class ReactForm extends Component {
 
         this.setFormStateValue = this.setFormStateValue.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange=this.handleChange.bind(this);
     }
 
     // callback method for child component updates state of form.
@@ -51,6 +52,18 @@ class ReactForm extends Component {
         }
     }
 
+    handleChange(e) {
+        const {formConfig } = this.props;
+        let validationConfig=formConfig[e.target.name];
+        //clear all err message once user change the value.
+        Utils.removeErrMsg(e.target);
+
+        let isVaild = !!validationConfig ? Utils.validationHelper.validateRule(validationConfig, e.target) : true;
+
+        //update the state of form using callbcak method
+        this.setFormStateValue(e.target.name, e.target.value, isVaild)
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
@@ -60,6 +73,7 @@ class ReactForm extends Component {
                             val: this.state[child.props.name].value,
                             setValue: this.setFormStateValue,
                             validationConfig: this.props.formConfig[child.props.name],
+                            handleChange:this.handleChange,
                             ...child.props
                         })
                     return child;
