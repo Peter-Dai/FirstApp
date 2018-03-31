@@ -44,6 +44,20 @@ const validationHelper = {
     getValidationConfig: (e, configs) => {
         var name = e.target.name;
         return configs[name];
+    },
+    validateRule: (validationConfig, targetDom) => {
+        const { rules } = validationConfig;
+        let isVaild = true;
+        // foreach rules of validaiton config and validate each rules, but once meet one failed will exit remaining validation
+        for (let i of rules) {
+            if (executeValidation(i, targetDom.value)) {
+                showErrMsg(targetDom, i.msg)
+                isVaild = false;
+                break;
+            }
+        }
+
+        return isVaild;
     }
 }
 

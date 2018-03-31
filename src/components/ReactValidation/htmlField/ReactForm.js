@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import ReactInput from "./ReactInput";
+import Utils from "../utils"
+import _ from "lodash"
 
 class ReactForm extends Component {
     constructor(...props) {
@@ -22,17 +24,31 @@ class ReactForm extends Component {
     }
 
     // callback method for child component updates state of form.
-    setFormStateValue(name, val) {
+    setFormStateValue(name, value, vaild) {
         let newOne = {};
         newOne[name] = {
-            value: val,
-            vaild: true
+            value,
+            vaild
         };
         this.setState(newOne)
     }
 
-    handleSubmit() {
-        
+    handleSubmit(e) {
+        e.preventDefault();
+        let invaildItems = _.map(this.state, (value, key, items) => {
+            return Object.assign({}, value, { id: key })
+        }).filter(i => !i.vaild);
+
+        if (!!invaildItems && invaildItems.length > 0) {
+            invaildItems.forEach((i) => {
+                let targetDom = e.target.querySelector("[name='" + i.id + "']");
+
+                Utils.validationHelper.validateRule(this.props.formConfig[i.id], targetDom);
+            })
+        }
+        else {
+            alert("could be submitted")
+        }
     }
 
     render() {
@@ -43,6 +59,7 @@ class ReactForm extends Component {
                         return React.cloneElement(child, {
                             val: this.state[child.props.name].value,
                             setValue: this.setFormStateValue,
+                            validationConfig: this.props.formConfig[child.props.name],
                             ...child.props
                         })
                     return child;

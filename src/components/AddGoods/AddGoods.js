@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReactInput, ReactForm ,Utils} from '../ReactValidation/ReactValidationComponent'
+import { ReactInput, ReactForm, Utils } from '../ReactValidation/ReactValidationComponent'
 
 class AddGoods extends Component {
     constructor(...props) {
@@ -22,6 +22,20 @@ class AddGoods extends Component {
                         name: Utils.validationType.maxLength,
                         rule: 3,
                         msg: "this is shit"
+                    }
+                ],
+                trigger: "blur"
+            },
+            bonnie: {
+                rules: [
+                    {
+                        name: Utils.validationType.required,
+                        msg: "this is bonnie required"
+                    },
+                    {
+                        name: Utils.validationType.maxLength,
+                        rule: 3,
+                        msg: "this is bonnie shit"
                     }
                 ],
                 trigger: "blur"
@@ -62,10 +76,12 @@ class AddGoods extends Component {
                     <label>Price:<input type="text" value={this.state.price} onChange={(e) => this.handleChange.call(this, e, "price")} /></label>
                 </div>
                 <button onClick={() => this.emitAdd.call(this)}>Add</button>
-                <ReactForm>
-                    <ReactInput name="peter" validationConfig={this.validationConfig.peter} ></ReactInput>
+                <ReactForm formConfig={this.validationConfig}>
+                    <ReactInput name="peter" ></ReactInput>
+                    <ReactInput name="bonnie" ></ReactInput>
                     <div>peter</div>
                     <input type="text" />
+                    <button type="submit" >Submit</button>
                 </ReactForm>
             </div>
 
