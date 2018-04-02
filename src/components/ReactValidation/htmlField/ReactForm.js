@@ -54,7 +54,7 @@ class ReactForm extends Component {
                 //retrieve current dom through by target field of event object.
                 let targetDom = e.target.querySelector("[name='" + i.id + "']");
                 //trigger the specified validaiton for invaild item.
-                Utils.validationHelper.validateRule(this.props.formConfig[i.id], targetDom);
+                Utils.validationHelper.validateRule(this.getFieldConfig(i.id), targetDom);
             })
         }
         else {
@@ -63,15 +63,16 @@ class ReactForm extends Component {
     }
 
     handleChange(e) {
-        const { formConfig } = this.props;
-        let validationConfig = formConfig[e.target.name];
+        const targetDom = e.target;
+        let validationConfig = this.getFieldConfig(targetDom.name);
         //clear all err message once user change the value.
-        Utils.removeErrMsg(e.target);
+        Utils.removeErrMsg(targetDom);
 
-        let isVaild = !!validationConfig ? Utils.validationHelper.validateRule(validationConfig, e.target) : true;
+        let isVaild = !!validationConfig ? Utils.validationHelper.validateRule(validationConfig, targetDom) : true;
 
         //update the state of form.
-        this.setFormStateValue(e.target.name, e.target.value, isVaild)
+        let currentValue = Utils.retrieveDomValue(targetDom)
+        this.setFormStateValue(targetDom.name, currentValue, isVaild)
     }
 
     render() {

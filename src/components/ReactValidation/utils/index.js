@@ -33,6 +33,10 @@ function executeValidation(rule, val) {
     }
 }
 
+function retrieveDomValue(targetDom) {
+    return ['radio', 'checkbox'].indexOf(targetDom.type) > -1 ? targetDom.checked ? targetDom.value : '' : targetDom.value;
+}
+
 const validationType = {
     required: "required",
     maxLength: "maxLength",
@@ -48,9 +52,10 @@ const validationHelper = {
     validateRule: (validationConfig, targetDom) => {
         const { rules } = validationConfig;
         let isVaild = true;
+        let value = ['radio', 'checkbox'].indexOf(targetDom.type) > -1 ? targetDom.checked : targetDom.value;
         // foreach rules of validaiton config and validate each rules, but once meet one failed will exit remaining validation
         for (let i of rules) {
-            if (executeValidation(i, targetDom.value)) {
+            if (executeValidation(i, value)) {
                 showErrMsg(targetDom, i.msg)
                 isVaild = false;
                 break;
@@ -66,6 +71,7 @@ export default {
     showErrMsg,
     removeErrMsg,
     executeValidation,
+    retrieveDomValue,
 
     // const
     validationType,

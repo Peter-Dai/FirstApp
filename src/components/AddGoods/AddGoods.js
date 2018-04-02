@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReactText, ReactForm, ReactSelect, Utils } from '../ReactValidation/ReactValidationComponent'
+import { ReactText, ReactForm, ReactSelect, ReactRadio,ReactCheckBox, Utils } from '../ReactValidation/ReactValidationComponent'
 
 class AddGoods extends Component {
     constructor(...props) {
@@ -67,11 +67,19 @@ class AddGoods extends Component {
                 ],
                 trigger: "blur"
             },
-            iman:{
+            iman: {
                 rules: [
                     {
                         name: Utils.validationType.required,
                         msg: "this is radio required"
+                    }
+                ],
+            },
+            matt: {
+                rules: [
+                    {
+                        name: Utils.validationType.required,
+                        msg: "this is checkbpox required"
                     }
                 ],
             }
@@ -135,11 +143,15 @@ class AddGoods extends Component {
                         </div>
                     </div>
 
-                   
-                    {/* <ReactInput type="radio" name ="iman" value="test" /> */}
-                    {/* <ReactInput type="radio" name ="iman" /> */}
-                    
-                    <input type="checkbox" /> 
+
+                    <ReactRadio name="iman" value="test" />
+                    <div>
+                        <div>
+                            <ReactCheckBox type="radio" name="matt" value="peter" />
+
+                        </div>
+                    </div>
+
 
                     <button type="submit" >Submit</button>
                 </ReactForm>
