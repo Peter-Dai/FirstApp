@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReactInput, ReactForm,ReactSelect, Utils } from '../ReactValidation/ReactValidationComponent'
+import { ReactInput, ReactForm, ReactSelect, Utils } from '../ReactValidation/ReactValidationComponent'
 
 class AddGoods extends Component {
     constructor(...props) {
@@ -8,18 +8,18 @@ class AddGoods extends Component {
             name: "peter",
             price: "$1",
             category: "test2",
-            selectConfig:{
-                options:[
-                    {text:"text1",value:"t1"},
-                    {text:"text2",value:"t2"},
-                    {text:"text3",value:"t3"},
-                    {text:"text4",value:"t4"},
-                    {text:"text5",value:"t5"},
-                    {text:"text6",value:"t6"},
-                    {text:"text7",value:"t7"},
-                    {text:"text8",value:"t8"},
+            selectConfig: {
+                options: [
+                    { text: "text1", value: "t1" },
+                    { text: "text2", value: "t2" },
+                    { text: "text3", value: "t3" },
+                    { text: "text4", value: "t4" },
+                    { text: "text5", value: "t5" },
+                    { text: "text6", value: "t6" },
+                    { text: "text7", value: "t7" },
+                    { text: "text8", value: "t8" },
                 ],
-                defaultOption:{text:"Select",value:""}
+                defaultOption: { text: "Select", value: "" }
             }
         }
 
@@ -78,7 +78,7 @@ class AddGoods extends Component {
         this.setState(newOne)
     }
 
-    bonnieChange(e){
+    bonnieChange(e) {
         console.log(e);
         alert("this is boonie call")
     }
@@ -111,12 +111,24 @@ class AddGoods extends Component {
                 </div>
                 <button onClick={() => this.emitAdd.call(this)}>Add</button>
                 <ReactForm formConfig={this.validationConfig}>
-                    <ReactInput name="peter" ></ReactInput>
+                    <div><label>Peter: <ReactInput name="peter" ></ReactInput></label></div>
                     <ReactInput name="bonnie" onChange={this.bonnieChange}></ReactInput>
-                    <ReactSelect name="tian" selectConfig={this.state.selectConfig}></ReactSelect>
-                    
-                    <div>peter</div>
+                    <div>
+                        <div>
+                            <div>
+                                <ReactSelect name="tian" selectConfig={this.state.selectConfig}></ReactSelect>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* <div>peter</div>
                     <input type="text" />
+                   
+                    <input type="radio" name ="66" />
+                    <input type="radio" name ="66" />
+                    
+                    <input type="checkbox" /> */}
+
                     <button type="submit" >Submit</button>
                 </ReactForm>
             </div>
