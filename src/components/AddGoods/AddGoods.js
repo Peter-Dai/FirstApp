@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { ReactInput, ReactForm, ReactSelect, Utils } from '../ReactValidation/ReactValidationComponent'
+import { ReactText, ReactForm, ReactSelect, Utils } from '../ReactValidation/ReactValidationComponent'
 
 class AddGoods extends Component {
     constructor(...props) {
@@ -66,10 +66,19 @@ class AddGoods extends Component {
                     }
                 ],
                 trigger: "blur"
+            },
+            iman:{
+                rules: [
+                    {
+                        name: Utils.validationType.required,
+                        msg: "this is radio required"
+                    }
+                ],
             }
         }
 
         this.bonnieChange = this.bonnieChange.bind(this)
+        this.tianChange = this.tianChange.bind(this)
     }
 
     handleChange(e, name) {
@@ -81,6 +90,11 @@ class AddGoods extends Component {
     bonnieChange(e) {
         console.log(e);
         alert("this is boonie call")
+    }
+
+    tianChange(e) {
+        console.log(e);
+        alert("this is tian call")
     }
 
     emitAdd() {
@@ -111,23 +125,21 @@ class AddGoods extends Component {
                 </div>
                 <button onClick={() => this.emitAdd.call(this)}>Add</button>
                 <ReactForm formConfig={this.validationConfig}>
-                    <div><label>Peter: <ReactInput name="peter" ></ReactInput></label></div>
-                    <ReactInput name="bonnie" onChange={this.bonnieChange}></ReactInput>
+                    <div><label>Peter: <ReactText name="peter" ></ReactText></label></div>
+                    <ReactText name="bonnie" onChange={this.bonnieChange}></ReactText>
                     <div>
                         <div>
                             <div>
-                                <ReactSelect name="tian" selectConfig={this.state.selectConfig}></ReactSelect>
+                                <ReactSelect name="tian" selectConfig={this.state.selectConfig} onChange={this.tianChange}></ReactSelect>
                             </div>
                         </div>
                     </div>
 
-                    {/* <div>peter</div>
-                    <input type="text" />
                    
-                    <input type="radio" name ="66" />
-                    <input type="radio" name ="66" />
+                    {/* <ReactInput type="radio" name ="iman" value="test" /> */}
+                    {/* <ReactInput type="radio" name ="iman" /> */}
                     
-                    <input type="checkbox" /> */}
+                    <input type="checkbox" /> 
 
                     <button type="submit" >Submit</button>
                 </ReactForm>

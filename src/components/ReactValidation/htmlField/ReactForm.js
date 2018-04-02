@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import ReactInput from "./ReactInput";
+import ReactText from "./ReactText";
 import Utils from "../utils"
 import _ from "lodash"
 import { FormApiContext } from "../context/formApiContext";
