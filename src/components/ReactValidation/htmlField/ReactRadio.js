@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { withFormApiContext } from "../context/withFormApiContext";
+import { withApiContext } from "../context/withApiContext";
 
 class ReactRadio extends Component {
     constructor(...props) {
@@ -25,9 +26,10 @@ class ReactRadio extends Component {
                     }
                 }}
                 value={value}
-                checked={formApi.getFormStateValue} />
+                checked={formApi.getFormStateValue} 
+                  />
         );
     }
 }
 
-export default withFormApiContext(ReactRadio);
+export default withApiContext(ReactRadio);

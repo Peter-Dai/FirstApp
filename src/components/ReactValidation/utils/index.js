@@ -4,10 +4,10 @@ import Validator from "../validator"
 function showErrMsg(ele, errMsg) {
     if (!ele)
         throw "no element";
-    if (document.getElementsByClassName(ele.name + "_err").length != 0)
+    if (document.getElementsByClassName(ele.getAttribute("name") + "_err").length != 0)
         return;
     let errDom = document.createElement("div");
-    errDom.className = ele.name + "_err";
+    errDom.className = ele.getAttribute("name") + "_err";
     errDom.style = "color:red";
     errDom.innerText = errMsg;
     ele.after(errDom)
@@ -16,7 +16,7 @@ function showErrMsg(ele, errMsg) {
 function removeErrMsg(ele) {
     if (!ele)
         throw "no element";
-    document.querySelectorAll("." + ele.name + "_err").forEach(function (a) {
+    document.querySelectorAll("." + ele.getAttribute("name") + "_err").forEach(function (a) {
         a.remove()
     })
 
@@ -49,14 +49,14 @@ const validationHelper = {
         var name = e.target.name;
         return configs[name];
     },
-    validateRule: (validationConfig, targetDom) => {
+    validateRule: (validationConfig, targetDom , messageDom) => {
         const { rules } = validationConfig;
         let isVaild = true;
         let value = ['radio', 'checkbox'].indexOf(targetDom.type) > -1 ? targetDom.checked : targetDom.value;
         // foreach rules of validaiton config and validate each rules, but once meet one failed will exit remaining validation
         for (let i of rules) {
             if (executeValidation(i, value)) {
-                showErrMsg(targetDom, i.msg)
+                showErrMsg(messageDom, i.msg)
                 isVaild = false;
                 break;
             }

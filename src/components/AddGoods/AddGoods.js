@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { ReactText, ReactForm, ReactSelect, ReactRadio,ReactCheckBox, Utils } from '../ReactValidation/ReactValidationComponent'
+import { ReactText, ReactForm, ReactSelect, ReactRadio, ReactCheckBox, Utils } from '../ReactValidation/ReactValidationComponent'
+import ReactGroup from '../ReactValidation/htmlField/ReactGroup';
 
 class AddGoods extends Component {
     constructor(...props) {
@@ -82,6 +83,14 @@ class AddGoods extends Component {
                         msg: "this is checkbpox required"
                     }
                 ],
+            },
+            groupIman:{
+                rules: [
+                    {
+                        name: Utils.validationType.required,
+                        msg: "this is group required"
+                    }
+                ],
             }
         }
 
@@ -143,14 +152,20 @@ class AddGoods extends Component {
                         </div>
                     </div>
 
-
-                    <ReactRadio name="iman" value="test" />
-                    <div>
+                    <ReactGroup name="groupIman">
+                        <ReactRadio group name="iman" value="test" />
+                        <ReactRadio group name="iman" value="test1" />
+                        <ReactRadio group name="iman" value="" />
+                        <ReactCheckBox group type="radio" name="matt" value="peter" />
+                        <ReactCheckBox group type="radio" name="tian" value="2222" />
+                        {/* <div>
                         <div>
                             <ReactCheckBox type="radio" name="matt" value="peter" />
 
                         </div>
-                    </div>
+                    </div> */}
+                    </ReactGroup>
+
 
 
                     <button type="submit" >Submit</button>

@@ -3,6 +3,8 @@ import Validator from "../validator";
 import Utils from "../utils";
 import { FormApiContext } from "../context/formApiContext";
 import { withFormApiContext } from "../context/withFormApiContext";
+import { withApiContext } from "../context/withApiContext";
+
 
 class ReactSelect extends Component {
     constructor(...props) {
@@ -71,4 +73,4 @@ class ReactSelect extends Component {
     }
 }
 
-export default withFormApiContext(ReactSelect);
+export default withApiContext(ReactSelect);

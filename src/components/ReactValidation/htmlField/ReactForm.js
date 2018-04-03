@@ -13,6 +13,7 @@ class ReactForm extends Component {
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);
         this.initFormStateValue = this.initFormStateValue.bind(this)
+        this.getFieldConfig = this.getFieldConfig.bind(this)
     }
 
     // callback method for child component updates state of form.
@@ -54,7 +55,7 @@ class ReactForm extends Component {
                 //retrieve current dom through by target field of event object.
                 let targetDom = e.target.querySelector("[name='" + i.id + "']");
                 //trigger the specified validaiton for invaild item.
-                Utils.validationHelper.validateRule(this.getFieldConfig(i.id), targetDom);
+                Utils.validationHelper.validateRule(this.getFieldConfig(i.id), targetDom,targetDom);
             })
         }
         else {
@@ -68,7 +69,7 @@ class ReactForm extends Component {
         //clear all err message once user change the value.
         Utils.removeErrMsg(targetDom);
 
-        let isVaild = !!validationConfig ? Utils.validationHelper.validateRule(validationConfig, targetDom) : true;
+        let isVaild = !!validationConfig ? Utils.validationHelper.validateRule(validationConfig, targetDom, targetDom) : true;
 
         //update the state of form.
         let currentValue = Utils.retrieveDomValue(targetDom)
@@ -76,11 +77,11 @@ class ReactForm extends Component {
     }
 
     render() {
-        const { handleChange, setFormStateValue, initFormStateValue } = this;
+        const { handleChange, setFormStateValue, initFormStateValue,getFieldConfig } = this;
 
         return (
             //use context to pass some common methods to all nested component.
-            <FormApiContext.Provider value={{ handleChange, setFormStateValue, initFormStateValue }}>
+            <FormApiContext.Provider value={{ handleChange, setFormStateValue, initFormStateValue,getFieldConfig }}>
                 <form onSubmit={this.handleSubmit}>
                     {this.props.children}
                 </form>

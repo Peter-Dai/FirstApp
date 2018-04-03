@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withFormApiContext } from "../context/withFormApiContext";
+import { withApiContext } from "../context/withApiContext";
+
 
 class ReactText extends Component {
     constructor(...props) {
@@ -29,4 +31,4 @@ class ReactText extends Component {
     }
 }
 
-export default withFormApiContext(ReactText);
+export default withApiContext(ReactText);

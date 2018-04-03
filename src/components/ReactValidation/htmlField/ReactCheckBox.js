@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { withFormApiContext } from "../context/withFormApiContext";
+import { withApiContext } from "../context/withApiContext";
+
 
 class ReactCheckBox extends Component {
     constructor(...props) {
@@ -30,4 +32,4 @@ class ReactCheckBox extends Component {
     }
 }
 
-export default withFormApiContext(ReactCheckBox);
+export default withApiContext(ReactCheckBox);
