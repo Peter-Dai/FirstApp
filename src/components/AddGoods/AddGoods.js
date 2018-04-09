@@ -143,27 +143,31 @@ class AddGoods extends Component {
                 <button onClick={() => this.emitAdd.call(this)}>Add</button>
                 <ReactForm formConfig={this.validationConfig}>
                     <div><label>Peter: <ReactText name="peter" ></ReactText></label></div>
-                    <ReactText name="bonnie" onChange={this.bonnieChange}></ReactText>
+                    <ReactText name="bonnie"></ReactText>
                     <div>
                         <div>
                             <div>
-                                <ReactSelect name="tian" selectConfig={this.state.selectConfig} onChange={this.tianChange}></ReactSelect>
+                                <ReactSelect name="tian" selectConfig={this.state.selectConfig} ></ReactSelect>
                             </div>
                         </div>
                     </div>
 
                     <ReactGroup name="groupIman">
-                        <ReactRadio group name="iman" value="test" />
-                        <ReactRadio group name="iman" value="test1" />
-                        <ReactRadio group name="iman" value="" />
-                        <ReactCheckBox group type="radio" name="matt" value="peter" />
-                        <ReactCheckBox group type="radio" name="tian" value="2222" />
+                        <div>this is group</div>
+                        <ReactRadio group name="iman1" value="test" />
+                        <ReactRadio group name="iman2" value="test1" />
+                        <ReactRadio group name="iman3" value="" />
+                        <ReactCheckBox group type="radio" name="iman4" value="peter" />
+                        <ReactCheckBox group type="radio" name="iman5" value="2222" />
                         {/* <div>
                         <div>
                             <ReactCheckBox type="radio" name="matt" value="peter" />
 
                         </div>
                     </div> */}
+
+                        <div>this is end group</div>
+                    
                     </ReactGroup>
 
 

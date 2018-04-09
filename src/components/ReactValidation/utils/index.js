@@ -49,20 +49,26 @@ const validationHelper = {
         var name = e.target.name;
         return configs[name];
     },
-    validateRule: (validationConfig, targetDom , messageDom) => {
+    validateRule: (validationConfig, targetDom, messageDom) => {
         const { rules } = validationConfig;
-        let isVaild = true;
+        // let isVaild = true;
+        let error = null;
+
         let value = ['radio', 'checkbox'].indexOf(targetDom.type) > -1 ? targetDom.checked : targetDom.value;
         // foreach rules of validaiton config and validate each rules, but once meet one failed will exit remaining validation
         for (let i of rules) {
             if (executeValidation(i, value)) {
                 showErrMsg(messageDom, i.msg)
-                isVaild = false;
+                // isVaild = false;
+                error = {
+                    name: i.name,
+                    msg: i.msg
+                }
                 break;
             }
         }
 
-        return isVaild;
+        return error;
     }
 }
 
