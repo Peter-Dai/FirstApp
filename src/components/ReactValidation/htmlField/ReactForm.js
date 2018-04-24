@@ -14,18 +14,20 @@ class ReactForm extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.initFormStateValue = this.initFormStateValue.bind(this);
         this.getFieldConfig = this.getFieldConfig.bind(this);
-        this.getFormStateValue = this.getFormStateValue.bind(this);
+        this.getFieldStateValue = this.getFieldStateValue.bind(this);
+        this.getFieldStateObj = this.getFieldStateObj.bind(this);
     }
 
     // callback method for child component updates state of form.
     setFormStateValue(name, value, valid, error) {
-        this.setState({
+        setTimeout(this.setState({
             [name]: {
                 value,
                 valid,
                 error
             }
-        });
+        }), 0)
+
     }
 
     // callback method for child component init state of form.
@@ -36,9 +38,16 @@ class ReactForm extends Component {
         this.setFormStateValue(name, '', defaultVaild, defaultErr);
     }
 
-    getFormStateValue(name) {
-        if (!this.state[name]) return null;
-        return Object.assign({}, this.state[name]);
+    getFieldStateObj(name) {
+        return Object.assign({}, this.state[name] || null);
+    }
+
+    getFieldStateValue(name) {
+        let currentState = this.getFieldStateObj(name);
+        if (currentState != null) {
+            return currentState.value;
+        }
+        return '';
     }
 
     getFieldConfig(name) {
@@ -60,7 +69,7 @@ class ReactForm extends Component {
                 //retrieve current dom through by target field of event object.
                 let targetDom = e.target.querySelector("[name='" + i.id + "']");
                 //trigger the specified validaiton for invaild item.
-                let targetError = this.getFormStateValue(i.id).error;
+                let targetError = this.getFieldStateObj(i.id).error;
                 Utils.showErrMsg(targetDom, targetError.msg)
             })
         }
@@ -85,11 +94,11 @@ class ReactForm extends Component {
     }
 
     render() {
-        const { handleChange, setFormStateValue, initFormStateValue, getFormStateValue, getFieldConfig } = this;
+        const { handleChange, setFormStateValue, initFormStateValue, getFieldStateValue, getFieldStateObj, getFieldConfig } = this;
 
         return (
             //use context to pass some common methods to all nested component.
-            <FormApiContext.Provider value={{ handleChange, setFormStateValue, getFormStateValue, initFormStateValue, getFieldConfig }}>
+            <FormApiContext.Provider value={{ handleChange, setFormStateValue, getFieldStateValue, getFieldStateObj, initFormStateValue, getFieldConfig }}>
                 <form onSubmit={this.handleSubmit}>
                     {this.props.children}
                 </form>

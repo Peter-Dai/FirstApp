@@ -152,23 +152,18 @@ class AddGoods extends Component {
                         </div>
                     </div>
 
-                    <ReactGroup name="groupIman">
+                    {/* <ReactGroup name="groupIman">
                         <div>this is group</div>
                         <ReactRadio group name="iman1" value="test" />
                         <ReactRadio group name="iman2" value="test1" />
                         <ReactRadio group name="iman3" value="" />
                         <ReactCheckBox group type="radio" name="iman4" value="peter" />
                         <ReactCheckBox group type="radio" name="iman5" value="2222" />
-                        {/* <div>
-                        <div>
-                            <ReactCheckBox type="radio" name="matt" value="peter" />
-
-                        </div>
-                    </div> */}
+                 
 
                         <div>this is end group</div>
                     
-                    </ReactGroup>
+                    </ReactGroup> */}
 
 
 

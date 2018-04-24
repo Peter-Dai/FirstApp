@@ -8,7 +8,7 @@ class ReactText extends Component {
         super(...props)
     }
 
-    componentDidMount() {
+    componentWillMount() {
         //init form state for validation.
         let { name, formApi } = this.props;
         formApi.initFormStateValue(name);
@@ -26,7 +26,7 @@ class ReactText extends Component {
                         onChange(e)
                     }
                 }}
-                value={formApi.getFormStateValue} />
+                value={formApi.getFieldStateValue(name)} />
         );
     }
 }

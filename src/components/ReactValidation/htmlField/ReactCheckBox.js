@@ -27,7 +27,7 @@ class ReactCheckBox extends Component {
                     }
                 }}
                 value={value}
-                checked={formApi.getFormStateValue} />
+                checked={formApi.getFieldStateValue(name)} />
         );
     }
 }

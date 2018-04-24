@@ -21,7 +21,7 @@ class ReactGroup extends Component {
     initFormStateValue(name) {
         const groupName = this.props.name;
 
-        let currentGroupState = this.props.formApi.getFormStateValue(groupName);
+        let currentGroupState = this.props.formApi.getFieldStateObj(groupName);
 
         if (!!currentGroupState) {
              currentGroupState.value[name]='';

@@ -58,7 +58,7 @@ class ReactSelect extends Component {
         return (
             <select type="text"
                 name={name}
-                value={formApi.getFormStateValue}
+                value={formApi.getFieldStateValue(name)}
                 onChange={(e) => {
                     formApi.handleChange(e);
                     if (onChange) {

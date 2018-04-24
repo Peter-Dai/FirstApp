@@ -19,7 +19,8 @@ export function withApiContext(Component) {
 
 
         return (
-            group ? groupApiContext : fromApiContext
+            // group ? groupApiContext : fromApiContext
+            fromApiContext
         );
     }
 }
