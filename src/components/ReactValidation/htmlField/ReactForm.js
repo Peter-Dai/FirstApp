@@ -74,7 +74,14 @@ class ReactForm extends Component {
             })
         }
         else {
-            alert("could be submitted")
+            if(!!this.props.onSubmit){
+                this.props.onSubmit();
+            }
+            else
+            {
+                alert("there is no method for onsubmit  ")
+
+            }
         }
     }
 

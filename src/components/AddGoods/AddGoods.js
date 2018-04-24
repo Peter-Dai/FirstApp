@@ -26,44 +26,44 @@ class AddGoods extends Component {
 
         // Config validation
         this.validationConfig = {
-            peter: {
+            name: {
                 rules: [
                     {
                         name: Utils.validationType.required,
-                        msg: "this is required"
+                        msg: "name is required"
                     },
                     {
                         name: Utils.validationType.maxLength,
                         rule: 3,
-                        msg: "this is shit"
+                        msg: "name should be less than 3 digits"
                     }
                 ],
                 trigger: "blur"
             },
-            bonnie: {
+            price: {
                 rules: [
                     {
                         name: Utils.validationType.required,
-                        msg: "this is bonnie required"
+                        msg: "price is required"
                     },
                     {
                         name: Utils.validationType.maxLength,
                         rule: 3,
-                        msg: "this is bonnie shit"
+                        msg: "price should be less than 3 digits"
                     }
                 ],
                 trigger: "blur"
             },
-            tian: {
+            category: {
                 rules: [
                     {
                         name: Utils.validationType.required,
-                        msg: "this is tian required"
+                        msg: "category is required"
                     },
                     {
                         name: Utils.validationType.maxLength,
                         rule: 3,
-                        msg: "this is tian shit"
+                        msg: "category maxlength should less than 3 digits"
                     }
                 ],
                 trigger: "blur"
@@ -120,29 +120,23 @@ class AddGoods extends Component {
 
     render() {
         return (
+            <ReactForm formConfig={this.validationConfig} onSubmit={() => this.emitAdd.call(this)}>
             <div>
                 <div>
-                    <label>Name:<input type="text" value={this.state.name} onChange={(e) => this.handleChange.call(this, e, "name")} /></label>
+                    <label>Name:<ReactText name="name" ></ReactText></label>
                 </div>
                 <div>
                     <label>categery:
-                        <select value={this.state.category} onChange={(e) => this.handleChange.call(this, e, "category")}>
-                            <option value=""> selcet</option>
-                            <option value="test1"> test1</option>
-                            <option value="test2"> test2</option>
-                            <option value="test3"> test3</option>
-                            <option value="test4"> test4</option>
-                            <option value="test5"> test5</option>
-                            <option value="test6"> test6</option>
-                        </select>
+                        <ReactSelect name="category" selectConfig={this.state.selectConfig} ></ReactSelect>
                     </label>
                 </div>
                 <div>
-                    <label>Price:<input type="text" value={this.state.price} onChange={(e) => this.handleChange.call(this, e, "price")} /></label>
+                    <label>Price:<ReactText name="price" ></ReactText>
+                        </label>
                 </div>
-                <button onClick={() => this.emitAdd.call(this)}>Add</button>
-                <ReactForm formConfig={this.validationConfig}>
-                    <div><label>Peter: <ReactText name="peter" ></ReactText></label></div>
+                {/* <button onClick={() => this.emitAdd.call(this)}>Add</button> */}
+               
+                    {/* <div><label>Peter: <ReactText name="peter" ></ReactText></label></div>
                     <ReactText name="bonnie"></ReactText>
                     <div>
                         <div>
@@ -150,7 +144,7 @@ class AddGoods extends Component {
                                 <ReactSelect name="tian" selectConfig={this.state.selectConfig} ></ReactSelect>
                             </div>
                         </div>
-                    </div>
+                    </div> */}
 
                     {/* <ReactGroup name="groupIman">
                         <div>this is group</div>
@@ -167,10 +161,10 @@ class AddGoods extends Component {
 
 
 
-                    <button type="submit" >Submit</button>
-                </ReactForm>
+                    <button type="submit" >Add</button>
+                
             </div>
-
+            </ReactForm>
         );
     }
 }
